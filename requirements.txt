@@ -1,25 +1,2 @@
-# Training
-transformers==4.40.2
-peft
-trl
-bitsandbytes
-accelerate
-datasets
-torch
-autoawq
-
-# Serving
-fastapi
-uvicorn
-pydantic
-requests
-
-# Observability
-weave
-wandb
-
-# Evaluation
-rouge-score
-
-# UI
 streamlit
+requests
