@@ -76,8 +76,7 @@ Training and serving code lives in the HuggingFace Spaces:
 ## Production Notes
 
 TGI is currently running on A10G GPU on HuggingFace Spaces.
-For cost optimization the Space is paused when not in use —
-first request may take 5-6 minutes to cold start.
+For cost optimization the Space is paused when not in use.
 
 For always-on production deployment this would run on dedicated
 GPU infrastructure with TGI's continuous batching and
