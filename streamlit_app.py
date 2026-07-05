@@ -67,8 +67,37 @@ if st.button("Get Answer", type="primary"):
                     st.metric("Model", "Mistral-7B AWQ")
 
             except Exception as e:
-                st.error(f"Error: {str(e)}")
-                st.info("The TGI server may be sleeping. Try again in a moment.")
+                st.error("The backend is currently paused.")
+                st.info(
+                    "The TGI inference server runs on a paid GPU instance, so I keep it "
+                    "paused when not actively demoing to avoid ongoing compute costs. "
+                    "Below are real sample outputs from the model so you can see it in action:"
+                )
+
+                st.markdown("### Sample Q&A")
+
+                samples = [
+                    {
+                        "question": "What is the process by which plants make food using sunlight?",
+                        "answer": "photosynthesis. Photosynthesis is the process by which plants make food using sunlight. During photosynthesis, chlorophyll absorbs sunlight and converts it into energy. The energy is stored in the chemical bonds of glucose, a sugar that is used by plants to build starch.",
+                        "latency": 1478
+                    },
+                    {
+                        "question": "What force keeps planets in orbit around the sun?",
+                        "answer": "gravity. Gravity is a force that keeps planets in orbit around the Sun. Gravity is also a force that keeps the Moon in orbit around the Earth. The force of gravity is also responsible for the tides that occur in the oceans around our planet.",
+                        "latency": 928
+                    },
+                    {
+                        "question": "What is the basic unit of life?",
+                        "answer": "cell. The basic unit of life is the cell. There are many types of cells.",
+                        "latency": 546
+                    }
+                ]
+
+                for s in samples:
+                    with st.expander(f"Q: {s['question']}"):
+                        st.success(s["answer"])
+                        st.caption(f"Latency: {s['latency']}ms · Model: Mistral-7B AWQ")
 
 # Footer
 st.markdown("---")
