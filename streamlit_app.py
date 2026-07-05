@@ -80,12 +80,12 @@ if st.button("Get Answer", type="primary"):
                     {
                         "question": "What is the process by which plants make food using sunlight?",
                         "answer": "photosynthesis. Photosynthesis is the process by which plants make food using sunlight. During photosynthesis, chlorophyll absorbs sunlight and converts it into energy. The energy is stored in the chemical bonds of glucose, a sugar that is used by plants to build starch.",
-                        "latency": 746
+                        "latency": 1478
                     },
                     {
                         "question": "What force keeps planets in orbit around the sun?",
                         "answer": "gravity. Gravity is a force that keeps planets in orbit around the Sun. Gravity is also a force that keeps the Moon in orbit around the Earth. The force of gravity is also responsible for the tides that occur in the oceans around our planet.",
-                        "latency": 658
+                        "latency": 928
                     },
                     {
                         "question": "What is the basic unit of life?",
