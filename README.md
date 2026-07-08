@@ -64,8 +64,25 @@ with minimal quality loss — the primary production value of quantization.
 
 ```
 EduTutor/
-├── streamlit_app.py      ← Streamlit UI
-├── requirements.txt      ← UI dependencies
+├── notebooks/
+│   ├── phase1_data_prep.ipynb          # Data loading & preprocessing (SciQ dataset)
+│   ├── phase2_qlora_finetuning.ipynb   # QLoRA fine-tuning of Mistral-7B-Instruct-v0.2
+│   ├── phase3_merge_awq.ipynb          # LoRA adapter merge + AWQ 4-bit quantization
+│   └── phase4_evaluation.ipynb         # Model evaluation & benchmarking
+│
+├── spaces/
+│   ├── edututor-api/                   # FastAPI inference service (HF Space)
+│   │   ├── Dockerfile
+│   │   ├── app.py
+│   │   └── requirements.txt
+│   │
+│   └── edututor-tgi/                   # TGI serving layer (HF Space, A10G hardware)
+│       └── Dockerfile
+│
+├── streamlit_app.py                    # Streamlit frontend
+├── requirements.txt                    # Root-level dependencies
+├── .gitignore
+├── LICENSE
 └── README.md
 ```
 
