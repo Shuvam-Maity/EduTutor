@@ -2,7 +2,7 @@
 
 Fine-tuned Mistral-7B-Instruct on 9,205 curriculum Q&A pairs using QLoRA.
 Served via TGI with AWQ 4-bit quantization. End-to-end LLM engineering project
-covering fine-tuning, quantization, inference, evaluation, and deployment
+covering fine-tuning, quantization, inference, evaluation, and deployment.
 
 ## Live Demo
 
