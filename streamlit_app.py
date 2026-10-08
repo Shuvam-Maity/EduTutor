@@ -23,15 +23,14 @@ with st.sidebar:
     **Stack:**
     - Mistral-7B fine-tuned with QLoRA
     - AWQ 4-bit quantization (71% smaller)
-    - Served via TGI on HuggingFace
-    - FastAPI inference layer
+    - Served via Gradio + ZeroGPU (free A100)
     - Weave observability
     
     **Model:** [Shuvam-Maity/edututor-mistral-awq](https://huggingface.co/Shuvam-Maity/edututor-mistral-awq)
     """)
 
 # API endpoint
-API_URL = "https://shuvam-maity-edututor-api.hf.space/generate"
+API_URL = "https://shuvam-maity-edututor-api.hf.space/run/predict"
 
 # Input
 question = st.text_area(
@@ -50,14 +49,15 @@ if st.button("Get Answer", type="primary"):
                 start    = time.time()
                 response = requests.post(
                     API_URL,
-                    json={"question": question, "max_tokens": 200},
-                    timeout=60
+                    json={"data": [question]},
+                    timeout=120
                 )
                 data    = response.json()
+                answer  = data["data"][0]
                 latency = round((time.time() - start) * 1000)
 
                 st.markdown("### Answer")
-                st.success(data["answer"])
+                st.success(answer)
 
                 st.markdown("---")
                 col1, col2 = st.columns(2)
