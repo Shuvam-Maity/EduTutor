@@ -24,9 +24,19 @@ with minimal quality loss — the primary production value of quantization.
 
 ## Architecture
 
+**Live Demo:**
+
+```
+[Streamlit UI] → [Gradio Space + ZeroGPU (A100)] → [Mistral-7B AWQ]
+```
+
+**Production Design:**
+
 ```
 [Streamlit UI] → [FastAPI + Weave] → [TGI Server] → [Mistral-7B AWQ]
 ```
+
+Production architecture code available in `spaces/` folder.
 
 ## Stack
 
@@ -71,13 +81,17 @@ EduTutor/
 │   └── phase4_evaluation.ipynb         # Model evaluation & benchmarking
 │
 ├── spaces/
-│   ├── edututor-api/                   # FastAPI inference service (HF Space)
+│   ├── edututor-api/                   # FastAPI inference service (HF Space production design)
 │   │   ├── Dockerfile
 │   │   ├── app.py
 │   │   └── requirements.txt
 │   │
-│   └── edututor-tgi/                   # TGI serving layer (HF Space, A10G hardware)
-│       └── Dockerfile
+│   ├── edututor-tgi/                   # TGI serving layer (HF Space, A10G hardware production design)
+│   │   └── Dockerfile
+│   │
+│   └── edututor-gradio/                # Gradio ZeroGPU (live demo)
+│       ├── app.py
+│       └── requirements.txt 
 │
 ├── streamlit_app.py                    # Streamlit frontend
 ├── requirements.txt                    # Root-level dependencies
@@ -86,18 +100,14 @@ EduTutor/
 └── README.md
 ```
 
-Training and serving code lives in the HuggingFace Spaces:
-- `edututor-api` Space — FastAPI inference layer
-- `edututor-tgi` Space — TGI serving
+## Deployment Notes
 
-## Production Notes
+The live demo runs on Gradio ZeroGPU (free A100) — zero cost,
+scales to zero when idle.
 
-TGI is currently running on A10G GPU on HuggingFace Spaces.
-For cost optimization the Space is paused when not in use.
-
-For always-on production deployment this would run on dedicated
-GPU infrastructure with TGI's continuous batching and
-PagedAttention for efficient memory management.
+For production scale this would use the TGI + FastAPI architecture
+in the `spaces/` folder — continuous batching, PagedAttention,
+and Weave observability for monitoring.
 
 ## Author
 
